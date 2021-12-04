@@ -2,7 +2,6 @@ package com.artcruz.games.desktop;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.artcruz.games.App;
 import com.artcruz.games.HelloWorldImage;
 
 public class DesktopLauncher {
