@@ -13,8 +13,10 @@ public class StarfishCollectorAlpha extends Game{
 
 	private Turtle turtle;
 	private ActorBeta starfish;
+	private ActorBeta shark;
 	private ActorBeta ocean;
 	private ActorBeta winMessage;
+	private ActorBeta gameOverMessage;
 	
 	private Stage mainStage;
 	
@@ -33,6 +35,11 @@ public class StarfishCollectorAlpha extends Game{
 		starfish.setPosition(380, 380);
 		mainStage.addActor(starfish);
 		
+		shark = new ActorBeta();
+		shark.setTexture(new Texture(Gdx.files.internal("sharky.png")));
+		shark.setPosition(30, 150);
+		mainStage.addActor(shark);
+		
 		turtle = new Turtle();
 		turtle.setTexture(new Texture(Gdx.files.internal("turtle-1.png")));
 		turtle.setPosition(20, 20);
@@ -43,6 +50,12 @@ public class StarfishCollectorAlpha extends Game{
 		winMessage.setPosition(120, 180);
 		winMessage.setVisible(false);
 		mainStage.addActor(winMessage);
+		
+		gameOverMessage = new ActorBeta();
+		gameOverMessage.setTexture(new Texture(Gdx.files.internal("game-over.png")));
+		gameOverMessage.setPosition(50, 180);
+		gameOverMessage.setVisible(false);
+		mainStage.addActor(gameOverMessage);
 		
 		win = false;
 	}
@@ -57,6 +70,13 @@ public class StarfishCollectorAlpha extends Game{
 			win = true;
 			winMessage.setVisible(win);
 		}
+		
+		// check game over condition: turtle must be overlapping shark
+		if(turtle.overlaps(shark)) {
+			turtle.remove();
+			gameOverMessage.setVisible(!win);
+		}
+		
 		
 		//clear screen
 		Gdx.gl.glClearColor(0, 0, 0, 1);
